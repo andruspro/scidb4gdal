@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/mappl/scidb4gdal.svg?branch=master)](https://travis-ci.org/mappl/scidb4gdal)
+[![Build Status](https://travis-ci.org/appelmar/scidb4gdal.svg?branch=master)](https://travis-ci.org/appelmar/scidb4gdal)
 # scidb4gdal
 A GDAL driver for SciDB arrays
 
 ## Description
-This is a preliminary version of a [GDAL](http://www.gdal.org) driver for the array database system SciDB. Spatial reference of arrays is maintained if the SciDB database uses the [scidb4geo plugin](https://github.com/mappl/scidb4geo).
+This is a preliminary version of a [GDAL](http://www.gdal.org) driver for the array database system SciDB. Spatial reference of arrays is maintained if the SciDB database uses the [scidb4geo plugin](https://github.com/appelmar/scidb4geo).
 Otherwise, the GDAL driver might be still useful e.g. for converting two-dimensional arrays to a variety of image formats supported by GDAL. 
 
 The driver offers support for reading and writing SciDB arrays. A single SciDB array may or may not be constructed from multiple (tiled) files. To build three-dimensional spacetime arrays, imagery can be automatically added to existing arrays based on its temporal snapshot (see details below).  
@@ -75,7 +75,7 @@ There are limitation on [naming the SciDB Array](http://paradigm4.com/HTMLmanual
 
 ## Details
 
-One of the benefits of SciDB is that it allows to store not only two dimensional data, but it supports multi-dimensional storage. The [scidb4geo](https://github.com/mappl/scidb4geo) plugin, extends SciDB to store images with spatial and temporal reference that is annotated to the SciDB arrays as metadata. With this annotations image coordinates (or dimension indices of arrays) can be transformed into real world coordinates and dates. GDAL can already deal with spatial operations like subsetting and image reprojections and  standard parameters for those operations can be also used with SciDB arrays. For example the gdal_translate parameter like `-projwin` or `-srcwin` will work for spatial subsetting and querying an array in SciDB.
+One of the benefits of SciDB is that it allows to store not only two dimensional data, but it supports multi-dimensional storage. The [scidb4geo](https://github.com/appelmar/scidb4geo) plugin, extends SciDB to store images with spatial and temporal reference that is annotated to the SciDB arrays as metadata. With this annotations image coordinates (or dimension indices of arrays) can be transformed into real world coordinates and dates. GDAL can already deal with spatial operations like subsetting and image reprojections and  standard parameters for those operations can be also used with SciDB arrays. For example the gdal_translate parameter like `-projwin` or `-srcwin` will work for spatial subsetting and querying an array in SciDB.
 
 We introduced several ways to state the temporal context, when querying a temporally referenced array.
 
@@ -177,7 +177,7 @@ The metadata for spatial-timeseries will look similar, but here the temporal ext
 
 ## Dependencies
 - At the moment the driver requires [Shim](https://github.com/Paradigm4/shim) to run on SciDB databases you want to connect to. In the future, this may or may not be changed to connecting directly to SciDB sockets using Google's protocol buffers
-- [ST plugin] (https://github.com/mappl/scidb4geo) for SciDB
+- [ST plugin] (https://github.com/appelmar/scidb4geo) for SciDB
 - We use [cURL](http://curl.haxx.se/) to interface with SciDB's web service shim
 - Some [Boost](http://www.boost.org) header-only libraries (no external libraries required for linking) for string functions
 
@@ -187,7 +187,7 @@ The metadata for spatial-timeseries will look similar, but here the temporal ext
 The following instructions show you how to compile GDAL with added SciDB driver on Unix environments.
 
 1. Download GDAL source
-2. Clone this repository `git clone https://github.com/mappl/scidb4gdal` 
+2. Clone this repository `git clone https://github.com/appelmar/scidb4gdal` 
 3. Copy the source to `GDAL_SRC_DIR/frmts/scidb` by `cp scidb4gdal/src GDAL_SRC_DIR/frmts/scidb`
 4. Add driver to GDAL source tree (see http://www.gdal.org/gdal_drivertut.html#gdal_drivertut_addingdriver):
     1. Add `GDALRegister_SciDB()`to `GDAL_SRC_DIR/gcore/gdal_frmts.h`
